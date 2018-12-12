@@ -1,11 +1,24 @@
 {
-	"name": "Team Playa-sama",
-	"version": "1.0.0",
-	"description": "bot de Team Playa de otakus para otakus",
-	"main": "index.js",
-	"author": "Team Playa",
-	"dependencies": {},
-	"scripts": {
-		"start": "node ./index.js"
-	}
+  "name": "botdiscord",
+  "version": "1.0.0",
+  "description": "bot team playa",
+  "main": "index.js",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "discord.js": "^11.4.2",
+    "ffmpeg-binaries": "^4.0.0",
+    "node-opus": "^0.3.1",
+    "ytdl": "^0.10.4",
+    "ytdl-core": "^0.28.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "servidor@rirwebs.com:/home/servidor/botdiscord/botdiscord.git"
+  },
+  "author": "Team Playa",
+  "license": "ISC"
 }
