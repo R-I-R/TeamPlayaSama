@@ -1,0 +1,11 @@
+{
+	"name": "Team Playa-sama",
+	"version": "1.0.0",
+	"description": "bot de Team Playa de otakus para otakus",
+	"main": "index.js",
+	"author": "Team Playa",
+	"dependencies": {},
+	"scripts": {
+		"start": "node ./index.js"
+	}
+}

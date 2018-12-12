@@ -1,0 +1,1 @@
+ssh servidor@pixalmoe.com
