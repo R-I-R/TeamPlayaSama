@@ -1,3 +1,0 @@
-#!/bin/sh
-git push origin master
-ssh root@pixalmoe.com 'bash -s' < /root/repository.git/hooks/deployment.sh
