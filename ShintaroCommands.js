@@ -124,5 +124,4 @@ function getCommand(comando,subcomando,msg,bot){
 //exporto los comandos que se usaran
 module.exports = {
     getCommand,
-    
 }
