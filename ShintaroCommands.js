@@ -165,7 +165,7 @@ function getCommand(comando,subcomando,msg,bot){
 			
 		case "meme":
 			switch(subcomando){
-				case jaidefinichon:
+				case "jaidefinichon":
 					request('https://jaidefinichon.com/', function (error, response, body) {
 					var $ = cheerio.load(body);
 
@@ -184,7 +184,7 @@ function getCommand(comando,subcomando,msg,bot){
 					});
 					break;
 				
-				case futubandera:
+				case "futubandera":
 					request('http://en.futubandera.cl/', function (error, response, body) {
 					var $ = cheerio.load(body);
 
@@ -202,7 +202,7 @@ function getCommand(comando,subcomando,msg,bot){
 
 					});
 					break;
-				case dankmemesreddit:
+				case "dankmemesreddit":
 					request('https://www.reddit.com/r/dankmemes/', function (error, response, body) {
 					var $ = cheerio.load(body);
 
