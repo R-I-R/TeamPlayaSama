@@ -116,7 +116,7 @@ function getCommand(comando,subcomando,msg,bot){
 			if(msg.member.voiceChannel){
 				const conexion = msg.member.voiceChannel.join()
 				.then(connection => {
-					const dispatcher = connection.playFile(`age2sonidos/${palanum[subcomando]}.mp3`);
+					const dispatcher = connection.playFile(`./age2sonidos/${palanum[subcomando]}.mp3`);
 					
 				})
 				.catch(console.error);
