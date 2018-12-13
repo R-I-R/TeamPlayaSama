@@ -11,6 +11,8 @@ let cheerio = require('cheerio')
 
 
 
+
+
 palanum = {
 	'si':'01',
 	'no':'02',
@@ -145,6 +147,17 @@ function getCommand(comando,subcomando,msg,bot){
 
 					});
 					break;	
+		case "sale":
+			if(msg.member.voiceChannel){
+				const conexion = msg.member.voiceChannel.join()
+				.then(connection => {
+					msg.member.voiceChannel.leave();
+					
+				})
+				.catch(console.error);
+			}
+			break;
+
 		case "tiempo":
 			let apiKey = '2f1e8bb2fbf1116d0a9ceebfbb022766';
 			let city = `${subcomando}`;
@@ -164,63 +177,50 @@ function getCommand(comando,subcomando,msg,bot){
 			break;
 			
 		case "meme":
-			switch(subcomando){
-				case "jaidefinichon":
-					request('https://jaidefinichon.com/', function (error, response, body) {
-					var $ = cheerio.load(body);
+			
+				switch(subcomando){
+					case "jaidefinichon":
+						request('https://jaidefinichon.com/', function (error, response, body) {
+						var $ = cheerio.load(body);
 
-					$('div.subtitulo').each(function(i, element){
-						var a = $(this);
-						var image = a.find('figure').first('img').attr('src');  //no luck
-						var image = a.find('figure > img').attr('src'); 
-						console.log(image);
-						if(i > 1 && i < 5){
-							msg.channel.send(`${image}`)
-							.then(message => console.log(`Sent message: ${msg.content}`))
-							.catch(console.error);
-						}
+						$('div.image_post').each(function(i, element){
+							var a = $(this);
+							var image = a.find('figure').first('img').attr('src');  //no luck
+							var image = a.find('figure > img').attr('src'); 
+							console.log(image);
+							if(i > 1 && i < 5){
+								msg.channel.send(`${image}`)
+								.then(message => console.log(`Sent message: ${msg.content}`))
+								.catch(console.error);
+							}
+							});
+
 						});
-
-					});
 					break;
 				
-				case "futubandera":
-					request('http://en.futubandera.cl/', function (error, response, body) {
-					var $ = cheerio.load(body);
+				
 
-					$('div.image_post').each(function(i, element){
-						var a = $(this);
-						var image = a.find('figure').first('img').attr('src');  //no luck
-						var image = a.find('figure > img').attr('src'); 
-						console.log(image);
-						if(i < 3){
-							msg.channel.send(`${image}`)
-							.then(message => console.log(`Sent message: ${msg.content}`))
-							.catch(console.error);
-						}
-						});
-
-					});
-					break;
+				
 				case "dankmemesreddit":
 					request('https://www.reddit.com/r/dankmemes/', function (error, response, body) {
 					var $ = cheerio.load(body);
 
 					$('div._30a0THmZ3f5iZXAQ0hBJ0k').each(function(i, element){
 						var a = $(this);
-						var image = a.find('div').first('img').attr('src');  //no luck
-						var image = a.find('div > img').attr('src'); 
+						var image = a.find('div').first('img._2_tDEnGMLxpM6uOa2kaDB3.media-element').attr('src');  //no luck
+						var image = a.find('div > img._2_tDEnGMLxpM6uOa2kaDB3.media-element').attr('src'); 
 						console.log(image);
-						if(i > 0 && i < 4){
+						
 							msg.channel.send(`${image}`)
 							.then(message => console.log(`Sent message: ${msg.content}`))
 							.catch(console.error);
-						}
+						
 						});
 
 					});
 					break;
-			}
+				}
+			
 			break;
 	}
 }
@@ -229,4 +229,4 @@ function getCommand(comando,subcomando,msg,bot){
 module.exports = {
     getCommand,
     
-}
+}	
