@@ -1,7 +1,3 @@
-
-
-
-
 //funcion que recibe los comandos
 function getCommand(comando,subcomando,msg,bot){
     
