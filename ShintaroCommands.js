@@ -164,28 +164,64 @@ function getCommand(comando,subcomando,msg,bot){
 			break;
 			
 		case "meme":
-			request('https://jaidefinichon.com/', function (error, response, body) {
-			var $ = cheerio.load(body);
+			switch(subcomando){
+				case jaidefinichon:
+					request('https://jaidefinichon.com/', function (error, response, body) {
+					var $ = cheerio.load(body);
 
-			$('div.image_post').each(function(i, element){
-				var a = $(this);
-				var image = a.find('figure').first('img').attr('src');  //no luck
-				var image = a.find('figure > img').attr('src'); 
-				console.log(image);
-				if(i > 1){
-					msg.channel.send(`${image}`)
-					.then(message => console.log(`Sent message: ${msg.content}`))
-					.catch(console.error);
-				}
-				});
+					$('div.subtitulo').each(function(i, element){
+						var a = $(this);
+						var image = a.find('figure').first('img').attr('src');  //no luck
+						var image = a.find('figure > img').attr('src'); 
+						console.log(image);
+						if(i > 1 && i < 5){
+							msg.channel.send(`${image}`)
+							.then(message => console.log(`Sent message: ${msg.content}`))
+							.catch(console.error);
+						}
+						});
 
-			});
+					});
+					break;
+				
+				case futubandera:
+					request('http://en.futubandera.cl/', function (error, response, body) {
+					var $ = cheerio.load(body);
+
+					$('div.image_post').each(function(i, element){
+						var a = $(this);
+						var image = a.find('figure').first('img').attr('src');  //no luck
+						var image = a.find('figure > img').attr('src'); 
+						console.log(image);
+						if(i < 3){
+							msg.channel.send(`${image}`)
+							.then(message => console.log(`Sent message: ${msg.content}`))
+							.catch(console.error);
+						}
+						});
+
+					});
+					break;
+				case dankmemesreddit:
+					request('https://www.reddit.com/r/dankmemes/', function (error, response, body) {
+					var $ = cheerio.load(body);
+
+					$('div._30a0THmZ3f5iZXAQ0hBJ0k').each(function(i, element){
+						var a = $(this);
+						var image = a.find('div').first('img').attr('src');  //no luck
+						var image = a.find('div > img').attr('src'); 
+						console.log(image);
+						if(i > 0 && i < 4){
+							msg.channel.send(`${image}`)
+							.then(message => console.log(`Sent message: ${msg.content}`))
+							.catch(console.error);
+						}
+						});
+
+					});
+					break;
+			}
 			break;
-			
-			
-		
-		
-		
 	}
 }
 
