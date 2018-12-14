@@ -88,7 +88,11 @@ palanum = {
 
 
 //funcion que recibe los comandos 
-function getCommand(comando,subcomando,msg,bot){
+function getCommand(mensaje,msg,bot){
+	let existe = true;
+	let subcomando = mensaje[1];
+	let comando = mensaje[0];
+
     switch(comando){ //la pos 0 es la palabra despues del uwu
 		case "loli":
 			msg.reply("Yoshi yoshi onichan")
@@ -250,7 +254,10 @@ function getCommand(comando,subcomando,msg,bot){
 				}
 			
 			break;
+		default:
+			existe = false;
 	}
+	return existe;
 }
 
 //exporto los comandos que se usaran

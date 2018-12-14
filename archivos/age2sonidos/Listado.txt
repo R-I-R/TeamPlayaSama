@@ -1,0 +1,61 @@
+01 : Yes
+02 : No
+03 : Food, please
+04 : Wood, please
+05 : Gold, PLease
+06 : Stone, please
+07 : Ahh
+08 : All hail
+09 : Oooh
+10 : Back to Age 1
+11 : Herb laugh
+12 : Being rushed
+13 : Blame your isp
+14 : Start the game
+15 : Don't Point That Thing
+16 : Enemy Sighted
+17 : It Is Good
+18 : I Need a Monk
+19 : Long Time No Siege
+20 : My granny
+21 : Nice Town I'll Take It
+22 : Quit Touchin
+23 : Raiding Party
+24 : Dadgum
+25 : Smite Me
+26 : The wonder
+27 : You play 2 hours
+28 : You Should See the Other Guy
+29 : Roggan
+30 : Wololo
+31 : Attack an Enemy Now
+32 : Cease Creating Extra Villagers
+33 : Create Extra Villagers
+34 : Build a Navy
+35 : Stop Building a Navy
+36 : Wait for My Signal to Attack
+37 : Build a Wonder
+38 : Give Me Your Extra Resources
+39 : Ally
+40 : Enemy
+41 : Neutral
+42 : What Age Are You In
+
+
+
+codigo python:
+
+import os
+#os.system("move 03.mp3 jajajaja.mp3") #para probar el comando
+lista = os.listdir('.') #listo los archivos del directorio donde ejecuto el bash
+#print(lista) #imprimo los archivos
+#input() #no va a seguir hasta que metas un enter, asi aseguras q los archivos sean los correctos con el print de arriba
+
+for a in lista: #recorre la lista
+	#st = 'move "{}" "{}"'.format(a,a[:2]+'.mp3') #va a hacer que el archivo pase a llamarse solo con sus 2 primeros char
+	#print(st) #imprime el comando a ver si esta bien
+	#os.system(st) #ejecuta el comando
+	#print("{} :{}".format(a[:2], a[2:-4])) imprime el numero : nombre "lo use para el listado de arriba"
+input() #se queda esperando hasta un enter
+
+#descomenta las lineas que quieras usar

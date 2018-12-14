@@ -12,14 +12,12 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-	
-	const [prefijo, comando,subcomando] = msg.content.split(" ");
-	console.log(prefijo,comando,subcomando);
-	if(prefijo == 'uwu'){
-		Shintaro.getCommand(comando,subcomando,msg,bot);
-		RIR.getCommand(comando,subcomando,msg,bot);
-			
+	let comando = msg.content.split(" ");
+	if(comando[0] == 'uwu'){
+		if(!Shintaro.getCommand(comando.slice(1),msg,bot) && !RIR.getCommand(comando.slice(1),msg,bot))
+			msg.channel.send(`Este comando no existe Baka ${msg.author}!!`);
 	}
+	
 });
 
 bot.login('NTIwMTMyMTc5NTYxNDE0NjY4.Duutuw.PdanxRoZm-pqxnr_m2oJXmdoxnI');

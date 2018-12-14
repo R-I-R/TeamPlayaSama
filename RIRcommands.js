@@ -1,15 +1,21 @@
 //funcion que recibe los comandos
-function getCommand(comando,subcomando,msg,bot){
-    
-    switch(comando){ //la pos 0 es la palabra despues del uwu
+function getCommand(comando,msg,bot){
+    let existe = true;
+    switch(comando[0]){ //la pos 1 es la palabra despues del uwu
         
         case 'hola':
-            msg.reply(`okaeri nasai ${msg.author} oni-chan`);
+            msg.channel.send(`okaeri nasai ${msg.author} oni-chan`);
             break;
         case 'wena':
-            msg.reply(`Chupala ${msg.author} oni-chan`);
+            msg.channel.send(`Chupala ${msg.author} oni-chan`);
             break;
+        case 'nice':
+            msg.channel.send({files:[{attachment: "./archivos/img/nice.gif"}]});
+            break;
+        default:
+            existe = false;
     }
+    return existe;
 }
 
 
