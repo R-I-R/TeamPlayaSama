@@ -150,7 +150,8 @@ function getCommand(mensaje,msg,bot){
 			if(msg.member.voiceChannel){
 				const conexion = msg.member.voiceChannel.join()
 				.then(connection => {
-					const dispatcher = connection.playFile(`./age2sonidos/${palanum[subcomando]}.mp3`);
+					if(parseInt(subcomando.slice(0,2))) connection.playFile(`./archivos/age2sonidos/${subcomando.slice(0,2)}.mp3`);
+					else connection.playFile(`./archivos/age2sonidos/${palanum[subcomando]}.mp3`);
 					
 				})
 				.catch(console.error);
