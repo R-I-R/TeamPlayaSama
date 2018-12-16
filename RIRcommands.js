@@ -5,6 +5,11 @@ function getCommand(comando,msg,bot){
         
         case 'hola':
             msg.channel.send(`okaeri nasai ${msg.author} oni-chan`);
+            if(msg.member.voiceChannel){
+                msg.member.voiceChannel.join().then(conexion => {
+                    conexion.playFile("archivos/sonidos/okaeri onii-chan.mp3");
+                }).catch(console.error);
+            }
             break;
         case 'wena':
             msg.channel.send(`Chupala ${msg.author} oni-chan`);
