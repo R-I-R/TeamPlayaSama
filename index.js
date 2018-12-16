@@ -7,6 +7,7 @@ const Shintaro = require('./ShintaroCommands');
 
 bot.on('ready', () => {
   console.log(`Logged in as ${bot.user.tag}!`);
+  bot.user.setAvatar("./bot.jpg");
 });
 
 bot.on('message', msg => {

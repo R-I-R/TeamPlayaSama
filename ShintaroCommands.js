@@ -212,7 +212,7 @@ function getCommand(mensaje,msg,bot){
 			  } else {
 				let weather = JSON.parse(body)
 				let message = `Hay ${weather.main.temp}°C en ${weather.name}!
-							  La velocidad del viento es de ${weather.wind.speed} kilometros por hora y la humedad es de ${weather.main.humidity}%`;
+							   La velocidad del viento es de ${weather.wind.speed} kilometros por hora y la humedad es de ${weather.main.humidity}%`;
 				console.log(message);
 				msg.reply(message);
 			  }
