@@ -5,8 +5,6 @@ const Shintaro = require('./ShintaroCommands');
 
 
 
-
-
 bot.on('ready', () => {
   console.log(`Logged in as ${bot.user.tag}!`);
 });
