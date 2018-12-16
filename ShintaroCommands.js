@@ -203,7 +203,7 @@ function getCommand(mensaje,msg,bot){
 
 		case "tiempo":
 			let apiKey = '2f1e8bb2fbf1116d0a9ceebfbb022766';
-			let city = `${subcomando}`;
+			let city = `${mensaje.slice(1).join(" ")}`;
 			let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
 
 			request(url, function (err, response, body) {
