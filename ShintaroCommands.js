@@ -85,7 +85,8 @@ palanum = {
 	'neutral':'41',
 	'enqueedad':'42'
 }
-
+var contenido = fs.readFileSync("comandos.json");
+obj = JSON.parse(contenido);
 
 //funcion que recibe los comandos 
 function getCommand(mensaje,msg,bot){
@@ -93,7 +94,16 @@ function getCommand(mensaje,msg,bot){
 	let subcomando = mensaje[1];
 	let comando = mensaje[0];
 
-    switch(comando){ //la pos 0 es la palabra despues del uwu
+	switch(comando){ //la pos 0 es la palabra despues del uwu
+		case "help":
+			msg.author.send("",{embed:{
+				title:"Lista de Comandos",
+				color:500,
+				description: obj.help,
+			}})
+			.then(message => console.log(`Sent message: ${msg.content}`))
+			.catch(console.error);
+			break;
 		case "loli":
 			msg.reply("Yoshi yoshi onichan")
 			.then(message => console.log(`Sent message: ${msg.content}`))

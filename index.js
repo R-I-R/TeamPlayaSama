@@ -14,8 +14,11 @@ bot.on('ready', () => {
 bot.on('message', msg => {
 	let comando = msg.content.split(" ");
 	if(comando[0] == 'uwu'){
-		if(!Shintaro.getCommand(comando.slice(1),msg,bot) && !RIR.getCommand(comando.slice(1),msg,bot))
+		if(!Shintaro.getCommand(comando.slice(1),msg,bot) && !RIR.getCommand(comando.slice(1),msg,bot)){
 			msg.channel.send(`Este comando no existe Baka ${msg.author}!!`);
+			msg.channel.send({files:[{attachment: "./archivos/img/error.png"}]});
+		}
+
 	}
 	
 });
