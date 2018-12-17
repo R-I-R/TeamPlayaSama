@@ -95,7 +95,7 @@ function getCommand(mensaje,msg,bot){
 
 	switch(comando){ //la pos 0 es la palabra despues del uwu
 		case "help":
-			msg.author.send("",{embed:{
+			msg.channel.send("",{embed:{
 				title:"Lista de Comandos",
 				color:500,
 				description: fs.readFileSync("listacomandos.txt","utf-8"),
