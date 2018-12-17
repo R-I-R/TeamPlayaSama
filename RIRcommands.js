@@ -20,7 +20,7 @@ function getCommand(comando,msg,bot){
             msg.channel.send({files:[{attachment: "./archivos/img/nice.gif"}]});
             if(msg.member.voiceChannel){
                 msg.member.voiceChannel.join().then(async conexion => {
-                    conexion.playFile("archivos/sonidos/nice.mp3");
+                    conexion.playFile("archivos/sonidos/Nice.mp3");
                 }).catch(console.error);
             }
             break;
@@ -72,6 +72,14 @@ function getCommand(comando,msg,bot){
                 }).catch(console.error);
             }else{
                 msg.channel.send("debes estar en un canal de voz");
+            }
+            break;
+        case 'nya':
+            msg.channel.send({files:[{attachment: "./archivos/img/nyan.gif"}]});
+            if(msg.member.voiceChannel){
+                msg.member.voiceChannel.join().then(conexion => {
+                    conexion.playFile("archivos/sonidos/nya.mp3");
+                }).catch(console.error);
             }
             break;
         default:
