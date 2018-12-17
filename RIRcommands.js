@@ -82,6 +82,14 @@ function getCommand(comando,msg,bot){
                 }).catch(console.error);
             }
             break;
+        case 'tuturu':
+            //msg.channel.send({files:[{attachment: "./archivos/img/nyan.gif"}]});
+            if(msg.member.voiceChannel){
+                msg.member.voiceChannel.join().then(conexion => {
+                    conexion.playFile("archivos/sonidos/Tuturu.mp3");
+                }).catch(console.error);
+            }
+            break;
         default:
             existe = false;
     }
