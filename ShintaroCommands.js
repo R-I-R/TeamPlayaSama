@@ -85,8 +85,7 @@ palanum = {
 	'neutral':'41',
 	'enqueedad':'42'
 }
-var contenido = fs.readFileSync("comandos.json");
-obj = JSON.parse(contenido);
+//var contenido = fs.readFileSync("listacomandos.txt","utf-8");
 
 //funcion que recibe los comandos 
 function getCommand(mensaje,msg,bot){
@@ -99,7 +98,7 @@ function getCommand(mensaje,msg,bot){
 			msg.author.send("",{embed:{
 				title:"Lista de Comandos",
 				color:500,
-				description: obj.help,
+				description: fs.readFileSync("listacomandos.txt","utf-8"),
 			}})
 			.then(message => console.log(`Sent message: ${msg.content}`))
 			.catch(console.error);

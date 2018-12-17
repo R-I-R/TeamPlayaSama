@@ -1,0 +1,10 @@
+:european_castle: **Sonidos del Age of Empires 2**.
+`age <Numero del sonido / Frase clave>`
+:speaking_head: **Frases**
+`loli`,`botqlo`,`wena`,`hola`,`nice`,`ara`,`yamero`,`nya`,`tuturu`,`baka`,`ohoho`,`risamalvada`
+:confetti_ball: **Diversión**
+`meme <pagina(Por ahora solo jaidefinichon)>`
+:notes: **Musica**
+`callate`,`avengers`,`pilarmen`,`pilarmenfull`
+:cool: **Misc**
+`dado`,`moneda`,`tiempo<ciudad>`,`sale`
