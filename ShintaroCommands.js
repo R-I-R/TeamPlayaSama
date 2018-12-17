@@ -6,6 +6,8 @@ const { Client, RichEmbed } = require('discord.js');
 
 const request = require('request');
 let cheerio = require('cheerio')
+
+const Jimp = require('jimp');
 /*const curl = require("curl");
 const jsdom = require("jsdom");
 
@@ -95,8 +97,25 @@ function getCommand(mensaje,msg,bot){
 	let comando = mensaje[0];
 
 	switch(comando){ //la pos 0 es la palabra despues del uwu
+		case "changemymind":
+			/*Jimp.read('https://i.kym-cdn.com/photos/images/original/001/346/065/d4d.png')
+			.then(image =>{
+				Jimp.loadFont(Jimp.FONT_SANS_32_BLACK).then(font => {
+					image.print(font, 10, 10, 'Hello world!');
+					image.writeAsync("./archivos/img/changemymind.png"); 
+					msg.channel.send({files:[{attachment: "./archivos/img/changemymind.png"}]})
+					.then(message => console.log(`Sent message: ${msg.content}`))
+					.catch(console.error);
+				  });
+			})
+			.catch(err =>{
+				console.error
+			})
+			
+			break;
+*/
 		case "help":
-			msg.author.send("",{embed:{
+			msg.author.send("",{embed:{	
 				title:"Lista de Comandos",
 				color:500,
 				description: obj.help,
