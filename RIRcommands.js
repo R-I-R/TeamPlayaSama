@@ -91,6 +91,30 @@ function getCommand(comando,msg,bot){
                 }).catch(console.error);
             }
             break;
+        case 'baka':
+            msg.channel.send({files:[{attachment: "./archivos/img/baka.gif"}]});
+            if(msg.member.voiceChannel){
+                msg.member.voiceChannel.join().then(conexion => {
+                    conexion.playFile("archivos/sonidos/Baka.mp3");
+                }).catch(console.error);
+            }
+            break;
+        case 'ohoho':
+            msg.channel.send({files:[{attachment: "./archivos/img/ohoho.gif"}]});
+            if(msg.member.voiceChannel){
+                msg.member.voiceChannel.join().then(conexion => {
+                    conexion.playFile("archivos/sonidos/ohoho.mp3");
+                }).catch(console.error);
+            }
+            break;
+        case 'risamalvada':
+            msg.channel.send({files:[{attachment: "./archivos/img/risamalvada.gif"}]});
+            if(msg.member.voiceChannel){
+                msg.member.voiceChannel.join().then(conexion => {
+                    conexion.playFile("archivos/sonidos/risamalvada.mp3");
+                }).catch(console.error);
+            }
+            break;
         default:
             existe = false;
     }

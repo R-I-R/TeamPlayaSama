@@ -4,19 +4,11 @@
   "description": "bot team playa",
   "main": "index.js",
   "dependencies": {
-    "@discordjs/uws": "^11.149.1",
-    "bufferutil": "^4.0.0",
     "cheerio": "^1.0.0-rc.2",
     "discord.js": "^11.4.2",
-    "erlpack": "github:discordapp/erlpack",
-    "ffmpeg": "0.0.4",
-    "libsodium-wrappers": "^0.7.3",
-    "node-opus": "^0.3.1",
-    "request": "^2.88.0",
-    "sodium": "^3.0.2",
-    "ytdl": "^0.11.0",
-    "ytdl-core": "^0.28.2",
-    "zlib-sync": "^0.1.4"
+    "jimp": "^0.6.0",
+    "node-gyp": "^3.8.0",
+    "ytdl-core": "^0.28.3"
   },
   "devDependencies": {},
   "scripts": {
