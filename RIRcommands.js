@@ -1,5 +1,6 @@
 const ytdl = require("ytdl-core");
-
+const youtube = require("./youtube");
+var canal;
 //funcion que recibe los comandos
 function getCommand(comando,msg,bot){
     let existe = true;
@@ -113,6 +114,26 @@ function getCommand(comando,msg,bot){
                     conexion.playFile("archivos/sonidos/risamalvada.mp3");
                 }).catch(console.error);
             }
+            break;
+        case 'play':
+            if(msg.member.voiceChannel){
+                msg.member.voiceChannel.join().then(conexion => {
+                    youtube.buscarVideo(comando.slice(1).join(" ")).then(video => {
+                        msg.channel.send("Reproduciendo: "+video.snippet.title);
+                        conexion.playStream(ytdl("https://www.youtube.com/watch?v="+video.id.videoId,{filter:"audioonly"}));
+                    });
+                }).catch(console.error);
+            }else{
+                msg.channel.send("debes estar en un canal de voz");
+            }
+            break;
+        case 'oye':
+            if(msg.member.voiceChannel) canal = msg.member.voiceChannelID;
+            console.log(canal);
+            break;
+        case 'yapo':
+            console.log("moviendo al canal ",canal);
+            msg.member.setVoiceChannel(canal);
             break;
         default:
             existe = false;
