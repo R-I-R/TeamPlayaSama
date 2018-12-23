@@ -3,7 +3,7 @@ const ytdl = require('ytdl-core');
 const streamOptions = {seek: 0, volume:1};
 const fs = require('fs');
 const { Client, RichEmbed } = require('discord.js');
-
+const index = require('./index');
 const request = require('request');
 let cheerio = require('cheerio')
 
@@ -147,23 +147,6 @@ function getCommand(mensaje,msg,bot){
 			.catch(console.error);
 			break;
 		
-		case "yutu":
-			if(msg.member.voiceChannel){
-			const conexion = msg.member.voiceChannel.join()
-			.then(connection => {
-				const youtube = ytdl(
-					'https://www.youtube.com/watch?v=-vH2eZAM30s',
-					{filter:'audioonly'});
-				const dispatcher1 = connection.playStream(youtube, streamOptions);
-			})
-			.catch(console.error);
-			
-		}
-		else{
-			msg.reply("necesitas entrar a un canal de voz");
-		}
-			break;	
-		
 		case "moneda":
 			if(Math.random() <.5 ){
 				msg.channel.send("Salio cara")
@@ -185,8 +168,7 @@ function getCommand(mensaje,msg,bot){
 		
 		case "age":
 			if(msg.member.voiceChannel){
-				const conexion = msg.member.voiceChannel.join()
-				.then(connection => {
+				index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(connection => {
 					if(parseInt(subcomando.slice(0,2))) connection.playFile(`./archivos/age2sonidos/${subcomando.slice(0,2)}.mp3`,{passes:3});
 					else connection.playFile(`./archivos/age2sonidos/${palanum[subcomando]}.mp3`,{passes:3});
 					
@@ -219,12 +201,13 @@ function getCommand(mensaje,msg,bot){
 					break;	
 		case "sale":
 			if(msg.member.voiceChannel){
-				const conexion = msg.member.voiceChannel.join()
+				if(index.conexiones[msg.member.voiceChannelID]) index.conexiones[msg.member.voiceChannelID].disconnect();
+				/*const conexion = msg.member.voiceChannel.join()
 				.then(connection => {
 					msg.member.voiceChannel.leave();
 					
 				})
-				.catch(console.error);
+				.catch(console.error);*/
 			}
 			break;
 
@@ -291,6 +274,9 @@ function getCommand(mensaje,msg,bot){
 					break;
 				}
 			
+			break;
+		case 'ee':
+			console.log(index.conexiones);
 			break;
 		default:
 			existe = false;

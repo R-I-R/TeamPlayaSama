@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 const RIR = require('./RIRcommands');
 const Shintaro = require('./ShintaroCommands');
 
-
+var conexiones = {};
 
 bot.on('ready', () => {
   console.log(`Logged in as ${bot.user.tag}!`);
@@ -17,10 +17,33 @@ bot.on('message', msg => {
 			msg.channel.send(`Este comando no existe Baka ${msg.author}!!`);
 			msg.channel.send({files:[{attachment: "./archivos/img/error.png"}]});
 		}
-
+		//msg.member.voiceChannel.join().then(c => c.on('disconnect',(error) => ));
 	}
 	
 });
 
 bot.login('NTIwMTMyMTc5NTYxNDE0NjY4.Duutuw.PdanxRoZm-pqxnr_m2oJXmdoxnI');
 
+function voiceChannelConnect(ID,voiceChannel){
+	return new Promise((res) => {
+		if(conexiones[ID]){
+			console.log("si existe");
+			res(conexiones[ID]);
+		}else{
+			voiceChannel.join().then(c => {
+				conexiones[ID] = c;
+				conexiones[ID].on('disconnect', error => {
+					console.log("sali del canal: ",conexiones[ID].channel.name);
+					if(error) console.error;
+					else delete(conexiones[ID]);
+				});
+				res(conexiones[ID]);
+			}).catch(console.error);
+			
+		}
+	})
+    
+}
+
+module.exports.conexiones = conexiones;
+module.exports.voiceChannelConnect = voiceChannelConnect;
