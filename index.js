@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const RIR = require('./RIRcommands');
 const Shintaro = require('./ShintaroCommands');
+const rep = require('./reproductor');
 
 var conexiones = {};
 
@@ -24,7 +25,8 @@ bot.on('message', msg => {
 
 bot.login('NTIwMTMyMTc5NTYxNDE0NjY4.Duutuw.PdanxRoZm-pqxnr_m2oJXmdoxnI');
 
-function voiceChannelConnect(ID,voiceChannel){
+function voiceChannelConnect(msg){
+	let ID = msg.member.voiceChannelID, voiceChannel = msg.member.voiceChannel;
 	return new Promise((res) => {
 		if(conexiones[ID]){
 			console.log("si existe");
@@ -37,6 +39,8 @@ function voiceChannelConnect(ID,voiceChannel){
 					if(error) console.error;
 					else delete(conexiones[ID]);
 				});
+				conexiones[ID].reproductor = new rep(ID);
+				conexiones[ID].textChannel = msg.channel;
 				res(conexiones[ID]);
 			}).catch(console.error);
 			

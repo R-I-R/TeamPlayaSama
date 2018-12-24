@@ -10,129 +10,117 @@ function getCommand(comando,msg,bot){
         
         case 'hola':
             msg.channel.send(`okaeri ${msg.author} onii-chan`);
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/okaeri onii-chan.mp3");
-                }).catch(console.error);
-            }
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/okaeri onii-chan.mp3");
+            });
             break;
         case 'wena':
             msg.channel.send(`Chupala ${msg.author} onii-chan`);
             break;
         case 'nice':
             msg.channel.send({files:[{attachment: "./archivos/img/nice.gif"}]});
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/Nice.mp3");
-                }).catch(console.error);
-            }
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/Nice.mp3");
+            });
             break;
         case 'ara':
             msg.channel.send({files:[{attachment: "./archivos/img/araara.gif"}]});
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/araara.mp3");
-                }).catch(console.error);
-            }
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/araara.mp3");
+            });
             break;
         case 'yamero':
             msg.channel.send(`Yameroo!! ${msg.author} onii-chan`);
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/yamero.mp3");
-                }).catch(console.error);
-            }
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/yamero.mp3");
+            });
             break;
         case 'pilarmen':
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/Pillar MenS.mp3");
-                }).catch(console.error);
-            }
             msg.channel.send({files:[{attachment: "./archivos/img/pilarmen.gif"}]});
+            ifMemberVoiceChannel(msg, false, conexion => {
+                    conexion.playFile("archivos/sonidos/Pillar MenS.mp3");
+            });
+            
             break;
         case 'pilarmenfull':
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/Pillar Men.mp3");
-                }).catch(console.error);
-            }else{
-                msg.channel.send("debes estar en un canal de voz");
-            }
+            ifMemberVoiceChannel(msg, true, conexion => {
+                conexion.playFile("archivos/sonidos/Pillar Men.mp3");
+            });
             break;
         case 'callate':
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/silencio.mp3");
-                }).catch(console.error);
-            }
             msg.channel.send({files:[{attachment: "./archivos/img/callate.gif"}]});
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/silencio.mp3");
+            });
+            
             break;
         case 'avengers':
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playStream(ytdl("https://www.youtube.com/watch?v=1jbZjcgvzz8",{filter:"audioonly"}));
-                }).catch(console.error);
-            }else{
-                msg.channel.send("debes estar en un canal de voz");
-            }
+            ifMemberVoiceChannel(msg, true, conexion => {
+                conexion.playStream(ytdl("https://www.youtube.com/watch?v=1jbZjcgvzz8",{filter:"audioonly"}));
+            });
             break;
         case 'nya':
             msg.channel.send({files:[{attachment: "./archivos/img/nyan.gif"}]});
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/nya.mp3");
-                }).catch(console.error);
-            }
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/nya.mp3");
+            });
             break;
         case 'tuturu':
-            //msg.channel.send({files:[{attachment: "./archivos/img/nyan.gif"}]});
-            if(msg.member.voiceChannel){
-                msg.channel.send({files:[{attachment: "./archivos/img/tuturu.png"}]});
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/Tuturu.mp3");
-                }).catch(console.error);
-            }
+            msg.channel.send({files:[{attachment: "./archivos/img/tuturu.png"}]});
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/Tuturu.mp3");
+            });
             break;
         case 'baka':
             msg.channel.send({files:[{attachment: "./archivos/img/baka.gif"}]});
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/Baka.mp3");
-                }).catch(console.error);
-            }
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/Baka.mp3");
+            });
             break;
         case 'ohoho':
             msg.channel.send({files:[{attachment: "./archivos/img/ohoho.gif"}]});
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/ohoho.mp3");
-                }).catch(console.error);
-            }
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/ohoho.mp3");
+            });
             break;
         case 'risamalvada':
             msg.channel.send({files:[{attachment: "./archivos/img/risamalvada.gif"}]});
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    conexion.playFile("archivos/sonidos/risamalvada.mp3");
-                }).catch(console.error);
-            }
+            ifMemberVoiceChannel(msg, false, conexion => {
+                conexion.playFile("archivos/sonidos/risamalvada.mp3");
+            });
             break;
+
         case 'play':
-            if(msg.member.voiceChannel){
-                index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(conexion => {
-                    youtube.buscarVideo(comando.slice(1).join(" ")).then(video => {
-                        msg.channel.send("Reproduciendo: "+video.snippet.title);
-                        conexion.playStream(ytdl("https://www.youtube.com/watch?v="+video.id.videoId,{filter:"audioonly"}));
-                    });
+            ifMemberVoiceChannel(msg, true, conexion => {
+                youtube.buscarVideo(comando.slice(1).join(" ")).then(video => {
+                    conexion.reproductor.play(ytdl("https://www.youtube.com/watch?v="+video.id.videoId,{filter:"audioonly"}),video.snippet.title);
                 });
-            }else{
-                msg.channel.send("debes estar en un canal de voz");
-            }
+            });
+
+            break;
+        case 'skip':
+            ifMemberVoiceChannel(msg, true, conexion => {
+                conexion.reproductor.skip();
+            });
+            break;
+        case 'pause':
+            ifMemberVoiceChannel(msg, true, conexion => {
+                conexion.reproductor.pause();
+            });
+            break;
+        case 'resume':
+            ifMemberVoiceChannel(msg, true, conexion => {
+                conexion.reproductor.resume();
+            });
+            break;
+        case 'list':
+            ifMemberVoiceChannel(msg, true, conexion => {
+                conexion.reproductor.list(5);
+            });
             break;
         case 'aa':
             console.log("aa");
-            if(msg.member.voiceChannel) index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel);
+            if(msg.member.voiceChannel) index.voiceChannelConnect(msg);
             //console.log(canal);
             
             break;
@@ -147,7 +135,15 @@ function getCommand(comando,msg,bot){
 }
 
 
-
+function ifMemberVoiceChannel(msg,sino,callback){
+    if(msg.member.voiceChannel){
+        index.voiceChannelConnect(msg).then(conexion => {
+            callback(conexion);
+        }).catch(console.error);;
+    }else{
+        if(sino) msg.channel.send("debes estar en un canal de voz");
+    }
+}
 
 
 //exporto los comandos que se usaran

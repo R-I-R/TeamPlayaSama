@@ -168,7 +168,7 @@ function getCommand(mensaje,msg,bot){
 		
 		case "age":
 			if(msg.member.voiceChannel){
-				index.voiceChannelConnect(msg.member.voiceChannelID,msg.member.voiceChannel).then(connection => {
+				index.voiceChannelConnect(msg).then(connection => {
 					if(parseInt(subcomando.slice(0,2))) connection.playFile(`./archivos/age2sonidos/${subcomando.slice(0,2)}.mp3`,{passes:3});
 					else connection.playFile(`./archivos/age2sonidos/${palanum[subcomando]}.mp3`,{passes:3});
 					
