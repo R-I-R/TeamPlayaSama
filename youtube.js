@@ -49,6 +49,7 @@ class YouTube{
           part: 'id,snippet',
           q: nombre,
           maxResults: 1,
+          type: 'video',
         });
         console.log(res.data.items);
         return res.data.items[0];
