@@ -11,7 +11,7 @@ function getCommand(comando,msg,bot){
         case 'hola':
             msg.channel.send(`okaeri ${msg.author} onii-chan`);
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/okaeri onii-chan.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/okaeri onii-chan.mp3");
             });
             break;
         case 'wena':
@@ -20,73 +20,73 @@ function getCommand(comando,msg,bot){
         case 'nice':
             msg.channel.send({files:[{attachment: "./archivos/img/nice.gif"}]});
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/Nice.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/Nice.mp3");
             });
             break;
         case 'ara':
             msg.channel.send({files:[{attachment: "./archivos/img/araara.gif"}]});
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/araara.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/araara.mp3");
             });
             break;
         case 'yamero':
             msg.channel.send(`Yameroo!! ${msg.author} onii-chan`);
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/yamero.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/yamero.mp3");
             });
             break;
         case 'pilarmen':
             msg.channel.send({files:[{attachment: "./archivos/img/pilarmen.gif"}]});
             ifMemberVoiceChannel(msg, false, conexion => {
-                    conexion.playFile("archivos/sonidos/Pillar MenS.mp3");
+                    conexion.reproductor.playApart("archivos/sonidos/Pillar MenS.mp3");
             });
             
             break;
         case 'pilarmenfull':
             ifMemberVoiceChannel(msg, true, conexion => {
-                conexion.playFile("archivos/sonidos/Pillar Men.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/Pillar Men.mp3");
             });
             break;
         case 'callate':
             msg.channel.send({files:[{attachment: "./archivos/img/callate.gif"}]});
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/silencio.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/silencio.mp3");
             });
             
             break;
         case 'avengers':
             ifMemberVoiceChannel(msg, true, conexion => {
-                conexion.playStream(ytdl("https://www.youtube.com/watch?v=1jbZjcgvzz8",{filter:"audioonly"}));
+                conexion.reproductor.playApart(null,ytdl("https://www.youtube.com/watch?v=1jbZjcgvzz8",{filter:"audioonly"}));
             });
             break;
         case 'nya':
             msg.channel.send({files:[{attachment: "./archivos/img/nyan.gif"}]});
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/nya.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/nya.mp3");
             });
             break;
         case 'tuturu':
             msg.channel.send({files:[{attachment: "./archivos/img/tuturu.png"}]});
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/Tuturu.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/Tuturu.mp3");
             });
             break;
         case 'baka':
             msg.channel.send({files:[{attachment: "./archivos/img/baka.gif"}]});
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/Baka.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/Baka.mp3");
             });
             break;
         case 'ohoho':
             msg.channel.send({files:[{attachment: "./archivos/img/ohoho.gif"}]});
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/ohoho.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/ohoho.mp3");
             });
             break;
         case 'risamalvada':
             msg.channel.send({files:[{attachment: "./archivos/img/risamalvada.gif"}]});
             ifMemberVoiceChannel(msg, false, conexion => {
-                conexion.playFile("archivos/sonidos/risamalvada.mp3");
+                conexion.reproductor.playApart("archivos/sonidos/risamalvada.mp3");
             });
             break;
 

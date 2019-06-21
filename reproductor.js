@@ -9,16 +9,24 @@ class reproductor{
         this.sonando = null;
     }
 
-    play(stream,titulo){
+    play(stream,titulo,tiempo=0){
+        console.log("temporizador cancelado");
+        clearTimeout(this.conexion.timer);
+
         if(this.conexion.dispatcher){
             console.log("ya esta escuchando");
             this.cola.enqueue({'stream':stream,'titulo':titulo});
             this.conexion.textChannel.send("Añadido a la cola: `"+titulo+'`');
         }else{
             console.log("inciando ",titulo);
-            this.sonando = {'stream':stream,'titulo':titulo}
-            this.conexion.playStream(stream).on('end', error => {
+            this.sonando = {'stream':Object.assign(stream),'titulo':titulo,'tiempo':null};
+            console.log(stream);
+            this.conexion.playStream(stream,{'seek':tiempo}).on('end', error => {
                 if(error) console.log(error);
+                if(this.sonando['tiempo']) return;
+
+                console.log('temporizador restablecido');
+			    this.conexion.timer = setTimeout(() => {this.conexion.disconnect();console.log('no me pescaste, chao');},10000);//300000ms -> 5'
                 
                 if(!this.cola.isEmpty()){
                     setTimeout(()=>{
@@ -29,6 +37,34 @@ class reproductor{
             });
             this.conexion.textChannel.send("Reproduciendo: `"+titulo+'`');
         }
+    }
+
+    playApart(ruta=null, stream=null){
+
+        console.log("temporizador cancelado");
+        clearTimeout(this.conexion.timer);
+
+        if(this.sonando) if(this.sonando['tiempo'] == null){
+            this.sonando['tiempo'] = parseInt(this.conexion.dispatcher.time/1000);
+            console.log('tiempo en sonando');
+        } 
+        if(this.sonando) this.sonando['stream'] = this.conexion.dispatcher.stream;
+        if(this.sonando['tiempo']) console.log("tiempo sonando -",(this.sonando['tiempo']));
+
+        let dispacher;
+
+        if(ruta) dispacher = this.conexion.playFile(ruta);
+        else dispacher = this.conexion.playStream(stream);
+
+        dispacher.on('end', error => {
+            if(error) console.log(error);
+
+            console.log('temporizador restablecido');
+		    this.conexion.timer = setTimeout(() => {this.conexion.disconnect();console.log('no me pescaste, chao');},10000);//300000ms -> 5'
+            console.log('tiempo q sonaba',this.sonando['tiempo']);
+            if(this.sonando && this.sonando['tiempo']) setTimeout(()=>this.play(this.sonando['stream'],this.sonando['titulo']),500);
+        });
+            
     }
 
     skip(){
@@ -60,14 +96,13 @@ class reproductor{
     list(n=this.cola.size()){
         if(this.cola.size() > 0){
             this.conexion.textChannel.send("Estas escuchando: `"+this.sonando['titulo']+'`');
-            this.conexion.textChannel.send("las siguientes 5:");
+            this.conexion.textChannel.send("las siguientes ",n,":");
             this.cola.queue.slice(0,n).forEach(a => {
                 this.conexion.textChannel.send('`'+a['titulo']+'`');
             });
         }else if(this.sonando) this.conexion.textChannel.send("Estas escuchando: `"+this.sonando['titulo']+'`');
         else this.conexion.textChannel.send("No estas escuchando nada");
     }
-
 
 
 }

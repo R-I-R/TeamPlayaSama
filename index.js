@@ -30,6 +30,9 @@ function voiceChannelConnect(msg){
 	return new Promise((res) => {
 		if(conexiones[ID]){
 			console.log("si existe");
+			//clearTimeout(conexiones[ID].timer);
+			//console.log('temporizador restablecido');
+			//conexiones[ID].timer = setTimeout(() => {conexiones[ID].disconnect();console.log('no me pescaste, chao');},10000);//300000ms -> 5'
 			res(conexiones[ID]);
 		}else{
 			voiceChannel.join().then(c => {
@@ -41,6 +44,8 @@ function voiceChannelConnect(msg){
 				});
 				conexiones[ID].reproductor = new rep(ID);
 				conexiones[ID].textChannel = msg.channel;
+				conexiones[ID].timer = setTimeout(() => {conexiones[ID].disconnect();console.log('no me pescaste, chao');},10000);
+				//conexiones[ID].on('speaking', (user,estado) => console.log(user.username,estado));
 				res(conexiones[ID]);
 			}).catch(console.error);
 			
