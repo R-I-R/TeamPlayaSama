@@ -44,12 +44,12 @@ class reproductor{
         console.log("temporizador cancelado");
         clearTimeout(this.conexion.timer);
 
-        if(this.sonando) if(this.sonando['tiempo'] == null){
+        /*if(this.sonando) if(this.sonando['tiempo'] == null){
             this.sonando['tiempo'] = parseInt(this.conexion.dispatcher.time/1000);
             console.log('tiempo en sonando');
-        } 
+        } */
         if(this.sonando) this.sonando['stream'] = this.conexion.dispatcher.stream;
-        if(this.sonando['tiempo']) console.log("tiempo sonando -",(this.sonando['tiempo']));
+        //if(this.sonando && this.sonando['tiempo']) console.log("tiempo sonando -",(this.sonando['tiempo']));
 
         let dispacher;
 
@@ -61,8 +61,8 @@ class reproductor{
 
             console.log('temporizador restablecido');
 		    this.conexion.timer = setTimeout(() => {this.conexion.disconnect();console.log('no me pescaste, chao');},10000);//300000ms -> 5'
-            console.log('tiempo q sonaba',this.sonando['tiempo']);
-            if(this.sonando && this.sonando['tiempo']) setTimeout(()=>this.play(this.sonando['stream'],this.sonando['titulo']),500);
+            //console.log('tiempo q sonaba',this.sonando['tiempo']);
+            //if(this.sonando && this.sonando['tiempo']) setTimeout(()=>this.play(this.sonando['stream'],this.sonando['titulo']),500);
         });
             
     }
