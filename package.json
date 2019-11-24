@@ -3,24 +3,24 @@
   "version": "1.0.0",
   "description": "bot team playa",
   "engines": {
-    "node": "11.4.0"
+    "node": "12.13.1"
   },
   "main": "index.js",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "discord.js": "^11.4.2",
+    "cheerio": "^1.0.0-rc.3",
+    "discord.js": "^11.5.1",
     "erlpack": "github:discordapp/erlpack",
     "ffmpeg": "0.0.4",
-    "google-auth-library": "^2.0.2",
-    "googleapis": "^36.0.0",
-    "libsodium-wrappers": "^0.7.3",
-    "node-opus": "^0.3.1",
+    "google-auth-library": "^5.5.1",
+    "googleapis": "^45.0.0",
+    "jimp": "^0.8.5",
+    "libsodium-wrappers": "^0.7.6",
+    "node-opus": "^0.3.3",
     "request": "^2.88.0",
     "sodium": "^3.0.2",
-    "ytdl": "^0.11.0",
-    "zlib-sync": "^0.1.4",
-    "jimp": "^0.6.0",
-    "ytdl-core": "^0.28.3"
+    "ytdl": "^0.13.1",
+    "ytdl-core": "^1.0.1",
+    "zlib-sync": "^0.1.6"
   },
   "devDependencies": {},
   "scripts": {
