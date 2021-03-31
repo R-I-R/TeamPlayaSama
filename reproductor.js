@@ -1,5 +1,6 @@
 const index = require('./index');
 const cola = require('./colasypilas').Queue;
+const ytdl = require("ytdl-core");
 
 class reproductor{
 
@@ -9,28 +10,32 @@ class reproductor{
         this.sonando = null;
     }
 
-    play(stream,titulo,tiempo=0){
-        console.log("temporizador cancelado");
+    play(link,titulo,ini=15000,fin=0){
+        console.log("temporizador cancelado play");
         clearTimeout(this.conexion.timer);
 
-        if(this.conexion.dispatcher){
+        
+
+        if(this.sonando && this.sonando.reproduciendo){
             console.log("ya esta escuchando");
-            this.cola.enqueue({'stream':stream,'titulo':titulo});
+            this.cola.enqueue({'link':link,'titulo':titulo});
             this.conexion.textChannel.send("Añadido a la cola: `"+titulo+'`');
         }else{
             console.log("inciando ",titulo);
-            this.sonando = {'stream':Object.assign(stream),'titulo':titulo,'tiempo':null};
-            console.log(stream);
-            this.conexion.playStream(stream,{'seek':tiempo}).on('end', error => {
+            this.sonando = {'link':link,'titulo':titulo,'reproduciendo':true};
+            let stream = ytdl(link,{filter:"audioonly", range:{start:tiempo, end:}});
+            //console.log(stream);
+            this.conexion.playStream(stream).on('end', error => {
                 if(error) console.log(error);
-                if(this.sonando['tiempo']) return;
+                //if(this.sonando['tiempo']) return;
+                if(this.conexion.dispatcher) return;
 
-                console.log('temporizador restablecido');
+                console.log('temporizador restablecido play');
 			    this.conexion.timer = setTimeout(() => {this.conexion.disconnect();console.log('no me pescaste, chao');},10000);//300000ms -> 5'
                 
                 if(!this.cola.isEmpty()){
                     setTimeout(()=>{
-                        this.play(this.cola.peek()['stream'],this.cola.peek()['titulo']);
+                        this.play(this.cola.peek()['link'],this.cola.peek()['titulo']);
                         this.cola.dequeue();
                     },1000);
                 }else this.sonando = null;
@@ -41,15 +46,20 @@ class reproductor{
 
     playApart(ruta=null, stream=null){
 
-        console.log("temporizador cancelado");
+        console.log("temporizador cancelado playA");
         clearTimeout(this.conexion.timer);
 
         /*if(this.sonando) if(this.sonando['tiempo'] == null){
             this.sonando['tiempo'] = parseInt(this.conexion.dispatcher.time/1000);
             console.log('tiempo en sonando');
         } */
-        if(this.sonando) this.sonando['stream'] = this.conexion.dispatcher.stream;
+        this.sonando.reproduciendo = false;
+
+        let tiempostream;
+        if(this.sonando) tiempostream = this.conexion.dispatcher.time;
         //if(this.sonando && this.sonando['tiempo']) console.log("tiempo sonando -",(this.sonando['tiempo']));
+
+        if(this.sonando) console.log('tiempo sonando: '+this.conexion.dispatcher.time);
 
         let dispacher;
 
@@ -59,8 +69,14 @@ class reproductor{
         dispacher.on('end', error => {
             if(error) console.log(error);
 
-            console.log('temporizador restablecido');
-		    this.conexion.timer = setTimeout(() => {this.conexion.disconnect();console.log('no me pescaste, chao');},10000);//300000ms -> 5'
+            if(this.sonando){
+                console.log(tiempostream);
+                this.play(this.sonando.link, this.sonando.titulo, tiempostream);
+            }else{
+                console.log('temporizador restablecido playA');
+		        this.conexion.timer = setTimeout(() => {this.conexion.disconnect();console.log('no me pescaste, chao');},10000);//300000ms -> 5'
+            }
+            
             //console.log('tiempo q sonaba',this.sonando['tiempo']);
             //if(this.sonando && this.sonando['tiempo']) setTimeout(()=>this.play(this.sonando['stream'],this.sonando['titulo']),500);
         });

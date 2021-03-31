@@ -1,5 +1,6 @@
-const ytdl = require("ytdl-core");
+//const ytdl = require("ytdl-core");
 const youtube = require("./youtube");
+
 const index = require('./index');
 var canal;
 
@@ -56,7 +57,7 @@ function getCommand(comando,msg,bot){
             break;
         case 'avengers':
             ifMemberVoiceChannel(msg, true, conexion => {
-                conexion.reproductor.playApart(null,ytdl("https://www.youtube.com/watch?v=1jbZjcgvzz8",{filter:"audioonly"}));
+                conexion.reproductor.playApart(null,"https://www.youtube.com/watch?v=1jbZjcgvzz8");
             });
             break;
         case 'nya':
@@ -93,7 +94,7 @@ function getCommand(comando,msg,bot){
         case 'play':
             ifMemberVoiceChannel(msg, true, conexion => {
                 youtube.buscarVideo(comando.slice(1).join(" ")).then(video => {
-                    conexion.reproductor.play(ytdl("https://www.youtube.com/watch?v="+video.id.videoId,{filter:"audioonly"}),video.snippet.title);
+                    conexion.reproductor.play("https://www.youtube.com/watch?v="+video.id.videoId, video.snippet.title, fin=video.id.);
                 });
             });
 
